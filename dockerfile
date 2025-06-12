@@ -1,18 +1,11 @@
- Use Nginx as the base image
+# Step 1: Use an official Nginx image from the Docker registry
 FROM nginx:alpine
 
-# Set the working directory inside the container
-WORKDIR /usr/share/nginx/html
+# Step 2: Copy the project files into the container's web server directory
+COPY . /usr/share/nginx/html
 
-# Remove the default Nginx static assets
-RUN rm -rf ./*
-
-# Copy your project files to the container
-COPY . .
-
-# Expose port 80
+# Step 3: Expose port 80 to access the web server
 EXPOSE 80
 
-# No need to override the default Nginx CMD
-# It will automatically serve the static content
+# Step 4: Nginx will automatically run when the container starts (no need for CMD)
 
